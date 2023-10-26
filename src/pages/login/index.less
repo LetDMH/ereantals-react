@@ -1,0 +1,131 @@
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/images/login_bg.png');
+    background-size: cover;
+
+    &-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // 1320 / 1440
+        width: 91.67%;
+        min-width: 1420px;
+        max-width: 1620px;
+    }
+
+    &-tab {
+        margin: 33px 0 20px;
+        display: flex;
+
+        &__item {
+            cursor: pointer;
+
+            &--active {
+                .login-tab__content {
+                    color: #1850AE;
+                }
+
+                .login-tab__line {
+                    background: #1850AE;
+                    box-shadow: 0px 1px 1px 0px rgba(40, 91, 178, 0.34);
+                }
+            }
+        }
+
+        &__item+&__item {
+            margin-left: 40px;
+        }
+
+        &__content {
+            height: 30px;
+            line-height: 30px;
+            font-size: 20px;
+            color: #939EB1;
+            font-weight: 600;
+        }
+
+        &__line {
+            width: 52px;
+            height: 2px;
+            margin-top: 2px;
+            background: transparent;
+            margin: auto;
+        }
+    }
+
+    &-form {
+        border-radius: 10px;
+        background: #ffffff;
+        width: 500px;
+        height: 580px;
+        padding: 33px 40px 20px;
+        position: relative;
+
+        &__input {
+            border-radius: 10px;
+            width: 420px;
+            height: 56px;
+            font-size: 16px !important;
+        }
+
+        .ant-input-password {
+            width: 420px;
+            height: 56px;
+            align-items: center;
+            border-radius: 10px;
+
+            .ant-input {
+                height: 26px;
+                font-size: 16px !important;
+            }
+        }
+    }
+
+    &-code {
+        width: 160px;
+        height: 56px;
+        margin-left: 10px;
+    
+        img {
+            width: 160px;
+            height: 56px;
+            cursor: pointer;
+            vertical-align: middle;
+            border-radius: 10px;
+        }
+    }
+
+    &-footer {
+        height: 50px;
+        line-height: 50px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        min-width: 1420px;
+        color: var(#1850AE);
+        font-family: Arial;
+        font-size: 12px;
+        // letter-spacing: 1px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+#lottie {
+    width: 820px;
+    height: 699px;
+}
+
+#wx_reg {
+    display: flex;
+
+    iframe {
+        margin: auto;
+    }
+}
