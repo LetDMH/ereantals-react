@@ -1,47 +1,67 @@
-import { Dropdown } from 'antd'
-import type { MenuProps } from 'antd'
-import { useSelector } from 'react-redux'
-
+import { Dropdown } from "antd"
+import type { MenuProps } from "antd"
+import { useSelector } from "react-redux"
+import classNames from "classnames"
+import { Link, useNavigate } from "react-router-dom"
+import user from "@/store/actions/user"
+import { message } from "antd"
 
 const User: React.FC<{
-    collapsed: boolean
-}> = () => {
-    const { userInfo } = useSelector((state: RootState) => state.user)
+  collapsed: boolean
+}> = ({ collapsed }) => {
+  const navigate = useNavigate()
 
-    const items: MenuProps['items'] = [
-        {
-          key: '1',
-          label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-              1st menu item
-            </a>
-          ),
-        },
-        {
-          key: '2',
-          label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-              2nd menu item
-            </a>
-          ),
-        },
-        {
-          key: '3',
-          label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-              3rd menu item
-            </a>
-          ),
-        },
-      ];
+  const { userInfo, avatar, name, roles } = useSelector(
+    (state: RootState) => state.user
+  )
 
-    return (
-        <div className="sidebar-user">
-            <Dropdown menu={{ items }} placement="bottomLeft" arrow={{ pointAtCenter: true }}>
+  console.log(userInfo);
+  
+  // 退出登录
+  const logOut = () => {
+    user.logOut().then(() => {
+      message.success("退出登录成功")
+      navigate("/login", { replace: true })
+    })
+  }
 
-            </Dropdown>
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: <Link to="/user/profile">个人中心</Link>
+    },
+    {
+      key: "2",
+      type: "divider"
+    },
+    {
+      key: "3",
+      label: <div onClick={logOut}>退出登录</div>
+    }
+  ]
+
+  return (
+    <div className="sidebar-user">
+      <Dropdown
+        menu={{ items }}
+        placement="top"
+        arrow={{ pointAtCenter: true }}
+      >
+        <div className="sidebar-user__trigger">
+          <img
+            className={classNames("sidebar-user__avatar", {
+              "is-collapsed": collapsed
+            })}
+            src={avatar}
+          />
+          <div>
+            <div className="sidebar-user__name">{name}</div>
+            <div className="sidebar-user__department">{roles[0]?.roleName}</div>
+          </div>
         </div>
-    )
+      </Dropdown>
+    </div>
+  )
 }
 
 export default User

@@ -32,9 +32,42 @@
         height: 82px;
         background-color: rgb(36, 61, 105);
         border-top: 1px solid #37517D;
-        padding: 15px 0px;
+        // padding: 15px 0px;
         display: flex;
         align-items: center;
         justify-content: center;
+
+        &__trigger {
+            display: flex;
+            align-items: center;
+        }
+
+        &__avatar {
+            border: 1px solid white;
+            border-radius: 50%;
+            height: 36px;
+            width: 36px;
+            border-radius: 50%;
+            margin-right: 12px;
+
+            &.is-collapsed {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                margin: auto;
+                margin-top: 15px;
+            }
+        }
+
+        &__name {
+            color: rgba(255, 255, 255, 1);
+            font-size: 14px;
+        }
+
+        &__department {
+            color: rgba(134, 144, 156, 1);
+            font-size: 12px;
+            margin-top: 5px;
+        }
     }
 }

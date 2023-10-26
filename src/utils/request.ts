@@ -48,12 +48,12 @@ instance.interceptors.request.use(
 instance.interceptors.response.use((res) => {
   // 文件下载
   if (res.config.responseType == "blob") {
-    let blob = window.URL.createObjectURL(
+    const blob = window.URL.createObjectURL(
       new Blob([res.data], {
         type: res.data.type
       })
     )
-    let link = document.createElement("a")
+    const link = document.createElement("a")
     link.style.display = "none"
     link.href = blob
     link.setAttribute("download", "")
@@ -75,23 +75,23 @@ instance.interceptors.response.use((res) => {
   }
   if (code === 401) {
     if (!isRelogin.show) {
-      ;(isRelogin.show = true),
-        confirm({
-          title: "系统提示",
-          content: "登录状态已过期，您可以继续留在该页面，或者重新登录",
-          okText: "重新登录",
-          onOk() {
-            isRelogin.show = false
-            //       useUserStore()
-            //         .logOut()
-            //         .then(() => {
-            //           location.href = "/index"
-            //         })
-          },
-          onCancel() {
-            isRelogin.show = false
-          }
-        })
+      isRelogin.show = true
+      confirm({
+        title: "系统提示",
+        content: "登录状态已过期，您可以继续留在该页面，或者重新登录",
+        okText: "重新登录",
+        onOk() {
+          isRelogin.show = false
+          //       useUserStore()
+          //         .logOut()
+          //         .then(() => {
+          //           location.href = "/index"
+          //         })
+        },
+        onCancel() {
+          isRelogin.show = false
+        }
+      })
     }
     return Promise.reject("无效的会话，或者会话已过期，请重新登录。")
   } else if (code === 500) {

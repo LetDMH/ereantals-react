@@ -16,7 +16,7 @@ export default {
     const uuid = userInfo.uuid
     return new Promise((resolve, reject) => {
       login(username, password, code, uuid)
-        .then((res: any) => {
+        .then((res) => {
           setToken(res.data.access_token)
           store.dispatch({ type: "SET_TOKEN", payload: res.data.access_token })
           resolve(1)
