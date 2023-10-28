@@ -12,7 +12,7 @@ const appState = {
   }
 }
 
-const appReducer = (state = appState, { type, payload }: IAction): AppState => {
+const appReducer = (state: AppState = appState, { type, payload }: IAction) => {
   switch (type) {
     case "TOGGLE_SIDEBAR":
       if (state.sidebar.hide) return state
