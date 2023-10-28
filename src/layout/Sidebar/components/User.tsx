@@ -44,7 +44,7 @@ const User: React.FC<{
     <div className="sidebar-user">
       <Dropdown
         overlayStyle={{
-          minWidth: 'auto'
+          minWidth: "auto"
         }}
         menu={{ items }}
         placement="top"
@@ -57,7 +57,7 @@ const User: React.FC<{
             })}
             src={avatar}
           />
-          <div>
+          <div className={classNames({ hidden: collapsed })}>
             <div className="sidebar-user__name">{name}</div>
             <div className="sidebar-user__department">{roles[0]?.roleName}</div>
           </div>

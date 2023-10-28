@@ -1,14 +1,15 @@
-import { Menu, Button } from "antd"
+import { Menu } from "antd"
 import {
   AppstoreOutlined,
   MailOutlined,
   SettingOutlined
 } from "@ant-design/icons"
-import type { MenuProps, MenuTheme } from "antd"
+import type { MenuProps } from "antd"
 import "./index.less"
 import Logo from "./components/Logo"
 import User from "./components/User"
-import { useState } from "react"
+import { useState, useMemo } from "react"
+import { useSelector } from "react-redux"
 
 type MenuItem = Required<MenuProps>["items"][number]
 
@@ -54,7 +55,13 @@ const items: MenuItem[] = [
 ]
 
 const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false)
+  // const [collapsed, setCollapsed] = useState(false)
+
+  const { sidebar } = useSelector((state: RootState) => state.app)
+
+  const collapsed = useMemo(() => {
+    return !sidebar.opened
+  }, [sidebar])
 
   // const toggleCollapsed = () => {
   //   setCollapsed(!collapsed)

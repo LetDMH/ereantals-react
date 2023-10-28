@@ -1,8 +1,8 @@
 import { message } from "antd"
-import { useEffect } from "react"
+import { ReactNode, useEffect } from "react"
 // import { useSelector } from "react-redux"
 import { matchRoutes, useNavigate, useLocation } from "react-router-dom"
-import { routes } from "./index"
+import { constantRoutes } from "./index"
 import { getToken, setToken, isRelogin, getQueryStr } from "../utils"
 import { wechatLogin } from "@/api/login"
 import { useDispatch, useSelector } from "react-redux"
@@ -10,7 +10,7 @@ import user from "@/store/actions/user"
 
 interface IProps {
   path: string
-  children: unknown
+  children: ReactNode
 }
 
 const whiteList = ["/login", "/register", "/forget"]
@@ -19,7 +19,7 @@ const AuthRouter = ({ path, children }: IProps) => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const token = getToken()
-  const mathchs = matchRoutes(routes, location)
+  const mathchs = matchRoutes(constantRoutes, location)
   const isExist = mathchs?.some((item) => item.pathname == pathname)
   const dispatch = useDispatch()
   const { roles } = useSelector((state: RootState) => state.user)

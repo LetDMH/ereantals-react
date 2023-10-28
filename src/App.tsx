@@ -4,7 +4,7 @@ import { Suspense, ReactNode } from "react"
 import { useSelector } from "react-redux"
 import AuthRouter from "./router/authRouter"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { routes } from "./router/index"
+import { constantRoutes } from "./router/index"
 
 function App() {
   const { colorPrimary } = useSelector((state: RootState) => state.theme)
@@ -42,7 +42,7 @@ function App() {
     <BrowserRouter>
       <ConfigProvider locale={zhCN} theme={{ token: { colorPrimary } }}>
         <Suspense fallback={<Spin size="large" className="globa_spin" />}>
-          <Routes>{RouteAuthFun(routes)}</Routes>
+          <Routes>{RouteAuthFun(constantRoutes)}</Routes>
         </Suspense>
       </ConfigProvider>
     </BrowserRouter>
