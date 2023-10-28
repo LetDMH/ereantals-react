@@ -15,8 +15,8 @@ const User: React.FC<{
     (state: RootState) => state.user
   )
 
-  console.log(userInfo);
-  
+  console.log(userInfo)
+
   // 退出登录
   const logOut = () => {
     user.logOut().then(() => {
@@ -36,13 +36,16 @@ const User: React.FC<{
     },
     {
       key: "3",
-      label: <div onClick={logOut}>退出登录</div>
+      label: <span onClick={logOut}>退出登录</span>
     }
   ]
 
   return (
     <div className="sidebar-user">
       <Dropdown
+        overlayStyle={{
+          minWidth: 'auto'
+        }}
         menu={{ items }}
         placement="top"
         arrow={{ pointAtCenter: true }}

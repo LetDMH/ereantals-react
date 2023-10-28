@@ -18,9 +18,9 @@ export default defineConfig(({ mode, command, ssrBuild }) => {
           // 开发环境
           // target: 'http://192.168.2.109:8080',
           // 测试环境
-          target: "https://egs3-test.yuncanglian.com/prod-api",
+          // target: "https://egs3-test.yuncanglian.com/prod-api",
           // 生产环境
-          // target: 'http://egs3.yuncanglian.com/prod-api',
+          target: 'http://egs3.yuncanglian.com/prod-api',
           changeOrigin: true,
           rewrite: (p) => p.replace(/^\/dev-api/, "")
         }

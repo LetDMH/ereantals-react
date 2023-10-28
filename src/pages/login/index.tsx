@@ -3,13 +3,12 @@ import "./index.less"
 import lottie from "lottie-web"
 import { AnimationItem } from "lottie-web"
 import animationData from "../../../public/animation/data.json"
-import LoginFooter from "./loginFooter"
+import LoginFooter from "./components/loginFooter"
 import { Button, Form, Input } from "antd"
 import type { FormRule } from "antd"
 import logo from "@/assets/images/login_logo.png"
 import classNames from "classnames"
-import { getCodeImg, login } from "@/api/login"
-import { useDispatch } from "react-redux"
+import { getCodeImg } from "@/api/login"
 import user from "@/store/actions/user"
 import useCrypto from "@/hooks/useCrypto"
 import { useNavigate } from "react-router-dom"
@@ -58,10 +57,11 @@ const getAssetsImages = () => {
 
 const { encrypt } = useCrypto()
 
+let lottieInstance: AnimationItem
+
 const Login: React.FC = () => {
   console.log(111)
 
-  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [active, setActive] = useState(0)
@@ -117,8 +117,6 @@ const Login: React.FC = () => {
     }
   }, [active])
 
-  let lottieInstance: AnimationItem
-
   useEffect(() => {
     console.log(222)
 
@@ -129,7 +127,7 @@ const Login: React.FC = () => {
       loop: true,
       autoplay: true,
       animationData, // animation json
-      assetsPath: getAssetsImages() //
+      assetsPath: getAssetsImages()
     })
     // 获取验证码
     getCode()

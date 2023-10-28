@@ -1,8 +1,9 @@
 import Navbar from "./Navbar"
 import Sidebar from "./Sidebar"
 import AppMain from "./AppMain"
+import "./index.less"
 
-const Index = () => {
+const Layout = () => {
   return (
     <div className="app-wrapper">
       <Sidebar />
@@ -14,4 +15,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Layout

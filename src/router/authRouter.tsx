@@ -26,15 +26,6 @@ const AuthRouter = ({ path, children }: IProps) => {
 
   useEffect(() => {
     console.log(token)
-    // 没有token
-    if (!token && path !== "/login") {
-      // 在免登录白名单，直接进入
-      // if (whiteList.includes(path)) {
-      //   return children
-      // }
-      message.error("无效的会话，或者会话已过期，请重新登录。")
-      navigate("/login")
-    }
     // 这里判断条件是：token 存在并且是匹配到路由并且是已经登录的状态
     if (token && isExist) {
       // 如果你已经登录了，但是你通过浏览器里直接访问login的话不允许直接跳转到login路由，必须通过logout来控制退出登录或者是token过期返回登录界面
