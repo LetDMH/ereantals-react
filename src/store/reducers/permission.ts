@@ -17,7 +17,7 @@ const permissionState = {
   sidebarRoutes: []
 }
 
-const userReducer = (
+const permissionReducer = (
   state: PermissionState = permissionState,
   { type, payload }: IAction
 ) => {
@@ -39,4 +39,4 @@ const userReducer = (
   return state
 }
 
-export default userReducer
+export default permissionReducer

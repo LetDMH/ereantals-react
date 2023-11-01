@@ -11,7 +11,7 @@ export default defineConfig(({ mode, command, ssrBuild }) => {
     server: {
       open: true,
       host: true,
-      port: 8888,
+      port: 7777,
       proxy: {
         // https://cn.vitejs.dev/config/#server-proxy
         "/dev-api": {
