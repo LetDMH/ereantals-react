@@ -5,9 +5,10 @@ import Layout from "@/layout"
 import ParentView from "@/components/ParentView"
 import InnerLink from "@/components/InnerLink"
 import { RouteObject } from "react-router-dom"
+import { lazy } from "react"
 
 export default {
-  generateRoutes(routes: RouteObject[]) {
+  generateRoutes(routes?: RouteObject[]) {
     return new Promise((resolve) => {
       getRouters().then((res) => {
         const sdata = JSON.parse(JSON.stringify(res.data))
@@ -51,6 +52,8 @@ function filterAsyncRouter(
         route.element = ParentView
       } else if (route.component === "InnerLink") {
         route.element = InnerLink
+      } else {
+        route.element = loadView(route.component)
       }
     }
     if (route.children != null && route.children && route.children.length) {
@@ -103,3 +106,17 @@ function filterChildren(childrenMap: any[], lastRouter: any = false) {
 //     });
 //     return res;
 // }
+
+// 加载视图
+export const loadView = (view: any) => {
+  // 匹配pages里面所有的.tsx文件
+  const modules = import.meta.glob("./../../pages/**/*.tsx")
+  let res
+  for (const path in modules) {
+    const dir = path.split("pages/")[1].split(".tsx")[0]
+    if (dir === view) {
+      res = lazy(() => import(path))
+    }
+  }
+  return res
+}

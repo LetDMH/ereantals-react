@@ -54,14 +54,17 @@ const items: MenuItem[] = [
   ])
 ]
 
-const Sidebar = () => {
-  // const [collapsed, setCollapsed] = useState(false)
+const getMenuItem = (routes: any) => {
 
+}
+
+const Sidebar: React.FC = () => {
   const { sidebar } = useSelector((state: RootState) => state.app)
+  const { sidebarRoutes } = useSelector((state: RootState) => state.permission)
 
   const collapsed = useMemo(() => {
     return !sidebar.opened
-  }, [sidebar])
+  }, [sidebar.opened])
 
   // const toggleCollapsed = () => {
   //   setCollapsed(!collapsed)

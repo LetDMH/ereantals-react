@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouteObject } from "react-router-dom"
+import { createBrowserRouter, RouteObject, Navigate } from "react-router-dom"
 import { lazy } from "react"
 
 const Layout = lazy(() => import("@/layout"))

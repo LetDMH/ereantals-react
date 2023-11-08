@@ -7,6 +7,7 @@ import { getToken, setToken, isRelogin, getQueryStr } from "../utils"
 import { wechatLogin } from "@/api/login"
 import { useDispatch, useSelector } from "react-redux"
 import user from "@/store/actions/user"
+import permission from '@/store/actions/permission'
 
 interface IProps {
   path: string
@@ -41,7 +42,11 @@ const AuthRouter = ({ path, children }: IProps) => {
             .then(() => {
               isRelogin.show = false
               // TODO 获取权限、配置路由
-              navigate(pathname)
+              permission.generateRoutes().then((accessRoutes) => {
+                console.log(accessRoutes);
+                
+                navigate(pathname, { replace: true })
+              })
             })
             .catch((err) => {
               user.logOut().then(() => {

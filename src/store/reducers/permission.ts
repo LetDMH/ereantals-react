@@ -10,7 +10,7 @@ interface PermissionState {
 }
 
 const permissionState = {
-  routes: [],
+  routes: constantRoutes,
   addRoutes: [],
   defaultRoutes: [],
   topbarRoutes: [],

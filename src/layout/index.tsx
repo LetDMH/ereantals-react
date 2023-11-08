@@ -11,7 +11,7 @@ const Layout: React.FC = () => {
   
   const collapsed = useMemo(() => {
     return !sidebar.opened
-  }, [sidebar])
+  }, [sidebar.opened])
 
   return (
     <div className={classNames(["app-wrapper", { hideSidebar: collapsed }])}>

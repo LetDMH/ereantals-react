@@ -4,12 +4,14 @@ import { Suspense } from "react"
 import { useSelector } from "react-redux"
 import AuthRouter from "./router/authRouter"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { constantRoutes } from "./router/index"
 import { RouteObject } from "react-router-dom"
 
 function App() {
   const { colorPrimary } = useSelector((state: RootState) => state.theme)
+  const { routes } = useSelector((state: RootState) => state.permission)
 
+  console.log(routes);
+  
   // 处理routers
   const RouteAuthFun = (routes: RouteObject[]) => {
     return routes.map((item: RouteObject) => {
@@ -34,7 +36,7 @@ function App() {
     <BrowserRouter>
       <ConfigProvider locale={zhCN} theme={{ token: { colorPrimary } }}>
         <Suspense fallback={<Spin size="large" className="globa_spin" />}>
-          <Routes>{RouteAuthFun(constantRoutes)}</Routes>
+          <Routes>{RouteAuthFun(routes)}</Routes>
         </Suspense>
       </ConfigProvider>
     </BrowserRouter>
