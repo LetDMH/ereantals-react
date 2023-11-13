@@ -1,11 +1,16 @@
 import { Outlet } from "react-router-dom"
+import "./index.less"
 
-const AppMain = () => {
+const AppMain: React.FC = () => {
+
+  console.log('AppMain');
+  
+
   return (
-    <>
-      AppMain
+    <div className="app-main">
+      app-main
       <Outlet />
-    </>
+    </div>
   )
 }
 

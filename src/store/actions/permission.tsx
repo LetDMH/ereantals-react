@@ -47,13 +47,14 @@ function filterAsyncRouter(
     if (route.component) {
       // Layout ParentView 组件特殊处理
       if (route.component === "Layout") {
-        route.element = Layout
+        route.element = <Layout />
       } else if (route.component === "ParentView") {
-        route.element = ParentView
+        route.element = <ParentView />
       } else if (route.component === "InnerLink") {
-        route.element = InnerLink
+        route.element = <InnerLink />
       } else {
-        route.element = loadView(route.component)
+        const View = loadView(route.component)
+        route.element = <View />
       }
     }
     if (route.children != null && route.children && route.children.length) {
@@ -111,11 +112,11 @@ function filterChildren(childrenMap: any[], lastRouter: any = false) {
 export const loadView = (view: any) => {
   // 匹配pages里面所有的.tsx文件
   const modules = import.meta.glob("./../../pages/**/*.tsx")
-  let res
+  let res: any = () => <></>
   for (const path in modules) {
     const dir = path.split("pages/")[1].split(".tsx")[0]
     if (dir === view) {
-      res = lazy(() => import(path))
+      res = lazy(() => modules[path]() as any)
     }
   }
   return res

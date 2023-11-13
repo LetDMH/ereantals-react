@@ -1,5 +1,5 @@
 import { message } from "antd"
-import { ReactNode, useEffect } from "react"
+import { ReactNode, memo, useEffect } from "react"
 // import { useSelector } from "react-redux"
 import { matchRoutes, useNavigate, useLocation } from "react-router-dom"
 import { constantRoutes } from "./index"
@@ -7,7 +7,7 @@ import { getToken, setToken, isRelogin, getQueryStr } from "../utils"
 import { wechatLogin } from "@/api/login"
 import { useDispatch, useSelector } from "react-redux"
 import user from "@/store/actions/user"
-import permission from '@/store/actions/permission'
+import permission from "@/store/actions/permission"
 
 interface IProps {
   path: string
@@ -16,7 +16,7 @@ interface IProps {
 
 const whiteList = ["/login", "/register", "/forget"]
 
-const AuthRouter = ({ path, children }: IProps) => {
+const AuthRouter: React.FC<IProps> = memo(({ path, children }) => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const token = getToken()
@@ -43,15 +43,13 @@ const AuthRouter = ({ path, children }: IProps) => {
               isRelogin.show = false
               // TODO 获取权限、配置路由
               permission.generateRoutes().then((accessRoutes) => {
-                console.log(accessRoutes);
-                
                 navigate(pathname, { replace: true })
               })
             })
             .catch((err) => {
               user.logOut().then(() => {
                 message.error(err)
-                navigate("/")
+                navigate("/login")
               })
             })
         } else {
@@ -88,5 +86,5 @@ const AuthRouter = ({ path, children }: IProps) => {
   }, [token, pathname])
 
   return children
-}
+})
 export default AuthRouter

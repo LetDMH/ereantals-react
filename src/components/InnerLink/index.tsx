@@ -2,9 +2,9 @@ import { Spin } from "antd"
 import { useState, useEffect } from "react"
 
 const InnerLink: React.FC<{
-  src: string
-  id: string
-}> = ({ src, id }) => {
+  src?: string
+  id?: string
+}> = ({ src = "", id = "" }) => {
   const [loading, setLoading] = useState(false)
   const [height, setHeight] = useState("")
   const [iframeId, setIframeId] = useState("")

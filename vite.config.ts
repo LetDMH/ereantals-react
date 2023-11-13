@@ -2,12 +2,21 @@ import { defineConfig, loadEnv } from "vite"
 import react from "@vitejs/plugin-react"
 import path from "path"
 import UnoCSS from "unocss/vite"
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command, ssrBuild }) => {
   const { VITE_APP_ENV } = loadEnv(mode, process.cwd())
   return {
-    plugins: [react(), UnoCSS()],
+    plugins: [
+      react(),
+      UnoCSS(),
+      // 处理svg，生成svg雪碧图
+      createSvgIconsPlugin({
+        iconDirs: [path.resolve(process.cwd(), "src/assets/icons/svg")],
+        symbolId: "icon-[dir]-[name]"
+      })
+    ],
     server: {
       open: true,
       host: true,
@@ -18,7 +27,7 @@ export default defineConfig(({ mode, command, ssrBuild }) => {
           // 开发环境
           // target: 'http://192.168.2.109:8080',
           // 测试环境
-          target: "https://egs3-test.yuncanglian.com/prod-api",
+          target: "https://egs3.yuncanglian.com/prod-api",
           changeOrigin: true,
           rewrite: (p) => p.replace(/^\/dev-api/, "")
         }

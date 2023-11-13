@@ -4,9 +4,9 @@ import AppMain from "./AppMain"
 import "./index.less"
 import classNames from "classnames"
 import { useSelector } from "react-redux"
-import { useMemo } from "react"
+import { memo, useMemo } from "react"
 
-const Layout: React.FC = () => {
+const Layout: React.FC = memo(() => {
   const { sidebar } = useSelector((state: RootState) => state.app)
   
   const collapsed = useMemo(() => {
@@ -22,6 +22,6 @@ const Layout: React.FC = () => {
       </div>
     </div>
   )
-}
+})
 
 export default Layout

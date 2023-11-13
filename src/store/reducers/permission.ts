@@ -1,5 +1,5 @@
 import { constantRoutes } from "@/router"
-import { RouteObject } from 'react-router-dom'
+import { RouteObject } from "react-router-dom"
 
 interface PermissionState {
   routes: RouteObject[]
@@ -23,18 +23,17 @@ const permissionReducer = (
 ) => {
   switch (type) {
     case "SET_ROUTES":
-      state.addRoutes = payload
-      state.routes = constantRoutes.concat(payload)
-      break
+      return {
+        ...state,
+        addRoutes: payload,
+        routes: constantRoutes.concat(payload)
+      }
     case "SET_DEFAULT_ROUTES":
-      state.defaultRoutes = constantRoutes.concat(payload)
-      break
+      return { ...state, defaultRoutes: constantRoutes.concat(payload) }
     case "SET_TOP_BAR_ROUTES":
-      state.topbarRoutes = payload
-      break
+      return { ...state, topbarRoutes: payload }
     case "SET_SIDE_BAR_ROUTES":
-      state.sidebarRoutes = payload
-      break
+      return { ...state, sidebarRoutes: payload }
   }
   return state
 }

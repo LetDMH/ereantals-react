@@ -5,6 +5,8 @@ import "./styles/index.less"
 import { Provider } from "react-redux"
 import store from "./store"
 import "virtual:uno.css"
+// svg图标
+import 'virtual:svg-icons-register';
 import App from "./App"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
