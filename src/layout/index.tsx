@@ -6,7 +6,7 @@ import classNames from "classnames"
 import { useSelector } from "react-redux"
 import { memo, useMemo } from "react"
 
-const Layout: React.FC = memo(() => {
+const Layout: React.FC = () => {
   const { sidebar } = useSelector((state: RootState) => state.app)
   
   const collapsed = useMemo(() => {
@@ -22,6 +22,6 @@ const Layout: React.FC = memo(() => {
       </div>
     </div>
   )
-})
+}
 
 export default Layout
