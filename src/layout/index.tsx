@@ -7,6 +7,8 @@ import { useSelector } from "react-redux"
 import { memo, useMemo } from "react"
 
 const Layout: React.FC = () => {
+  console.log('重新渲染了？');
+  
   const { sidebar } = useSelector((state: RootState) => state.app)
   
   const collapsed = useMemo(() => {

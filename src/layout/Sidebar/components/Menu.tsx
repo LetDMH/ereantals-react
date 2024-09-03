@@ -1,7 +1,7 @@
 import { Menu as AMenu } from "antd"
 import type { MenuProps } from "antd"
 import { useSelector } from "react-redux"
-import { useEffect, useState } from "react"
+import { memo, useEffect, useState } from "react"
 import SvgIcon from "@/components/SvgIcon"
 import { useNavigate } from "react-router-dom"
 
@@ -89,9 +89,11 @@ function hasOneShowingChild(children: any[] = [], parent: any) {
   return false
 }
 
-const Menu: React.FC<{
+const Menu = memo<{
   collapsed: boolean
-}> = ({ collapsed }) => {
+}>(({ collapsed }) => {
+  console.log("menu")
+
   const { sidebarRoutes } = useSelector((state: RootState) => state.permission)
 
   const [menuItems, setMenuItems] = useState<MenuItem[]>([])
@@ -105,7 +107,6 @@ const Menu: React.FC<{
   }, [sidebarRoutes])
 
   const menuClick = ({ key, keyPath }) => {
-    console.log(key, keyPath)
     const path = keyPath.reverse().join("/")
     navigate(path)
   }
@@ -124,6 +125,6 @@ const Menu: React.FC<{
       />
     </div>
   )
-}
+})
 
 export default Menu

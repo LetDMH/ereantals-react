@@ -26,7 +26,7 @@ const AuthRouter: React.FC<IProps> = memo(({ path, children }) => {
   const { roles } = useSelector((state: RootState) => state.user)
 
   useEffect(() => {
-    console.log(token)
+    console.log(token, isExist)
     // 这里判断条件是：token 存在并且是匹配到路由并且是已经登录的状态
     if (token && isExist) {
       // 如果你已经登录了，但是你通过浏览器里直接访问login的话不允许直接跳转到login路由，必须通过logout来控制退出登录或者是token过期返回登录界面
@@ -53,7 +53,7 @@ const AuthRouter: React.FC<IProps> = memo(({ path, children }) => {
               })
             })
         } else {
-          navigate(pathname)
+          // navigate(pathname)
         }
       }
     } else {

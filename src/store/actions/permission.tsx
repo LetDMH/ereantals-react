@@ -1,14 +1,13 @@
 import store from ".."
 import { getRouters } from "@/api/menu"
 import { constantRoutes, dynamicRoutes } from "@/router"
-import Layout from "@/layout"
+// import Layout from "@/layout"
 import ParentView from "@/components/ParentView"
 import InnerLink from "@/components/InnerLink"
-import { RouteObject } from "react-router-dom"
 import { lazy } from "react"
 
 export default {
-  generateRoutes(routes?: RouteObject[]) {
+  generateRoutes() {
     return new Promise((resolve) => {
       getRouters().then((res) => {
         const sdata = JSON.parse(JSON.stringify(res.data))
@@ -45,13 +44,14 @@ function filterAsyncRouter(
       route.children = filterChildren(route.children)
     }
     if (route.component) {
-      // Layout ParentView 组件特殊处理
+      // Layout为一级菜单，设置空元素
       if (route.component === "Layout") {
-        route.element = <Layout />
+        route.element = <></>
       } else if (route.component === "ParentView") {
         route.element = <ParentView />
       } else if (route.component === "InnerLink") {
         route.element = <InnerLink />
+        // ParentView 组件特殊处理
       } else {
         const View = loadView(route.component)
         route.element = <View />

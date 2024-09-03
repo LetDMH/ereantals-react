@@ -23,10 +23,11 @@ const permissionReducer = (
 ) => {
   switch (type) {
     case "SET_ROUTES":
+      constantRoutes[0].children?.push(...payload)
       return {
         ...state,
         addRoutes: payload,
-        routes: constantRoutes.concat(payload)
+        routes: constantRoutes
       }
     case "SET_DEFAULT_ROUTES":
       return { ...state, defaultRoutes: constantRoutes.concat(payload) }

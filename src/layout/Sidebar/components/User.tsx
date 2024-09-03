@@ -5,10 +5,11 @@ import classNames from "classnames"
 import { Link, useNavigate } from "react-router-dom"
 import user from "@/store/actions/user"
 import { message } from "antd"
+import { memo } from "react"
 
-const User: React.FC<{
+const User = memo<{
   collapsed: boolean
-}> = ({ collapsed }) => {
+}>(({ collapsed }) => {
   const navigate = useNavigate()
 
   const { userInfo, avatar, name, roles } = useSelector(
@@ -65,6 +66,6 @@ const User: React.FC<{
       </Dropdown>
     </div>
   )
-}
+})
 
 export default User
