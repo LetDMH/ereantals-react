@@ -1,4 +1,4 @@
-import Navbar from "./Navbar"
+import TopMenu from "./TopMenu"
 import Sidebar from "./Sidebar"
 import AppMain from "./AppMain"
 import "./index.less"
@@ -19,7 +19,7 @@ const Layout: React.FC = () => {
     <div className={classNames(["app-wrapper", { hideSidebar: collapsed }])}>
       <Sidebar />
       <div className="main-container">
-        <Navbar />
+        <TopMenu />
         <AppMain />
       </div>
     </div>

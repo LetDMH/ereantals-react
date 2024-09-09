@@ -1,4 +1,4 @@
-.navbar {
+.topMenu {
     position: fixed;
     top: 0;
     right: 0;
@@ -7,10 +7,11 @@
     width: calc(100% - 200px);
     height: 54px;
     background: #fff;
-    display: flex;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
 
     .tagsView {
+        width: 100%;
+        height: 54px;
 
         &__hamburger {
             line-height: 54px;
@@ -24,5 +25,15 @@
                 background: rgba(0,0,0,.025);
             }
         }
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 44px;
+        overflow: hidden;
+        position: relative;
+        padding-left: 8px;
     }
 }

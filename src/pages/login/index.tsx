@@ -12,6 +12,7 @@ import { getCodeImg } from "@/api/login"
 import user from "@/store/actions/user"
 import useCrypto from "@/hooks/useCrypto"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from 'react-redux'
 
 type FieldType = {
   username?: string
@@ -63,6 +64,7 @@ const Login: React.FC = () => {
   console.log(111)
 
   const navigate = useNavigate()
+  const { colorPrimary } = useSelector((state: RootState) => state.theme)
 
   const [active, setActive] = useState(0)
   const [loading, setLoading] = useState(false)
@@ -202,7 +204,7 @@ const Login: React.FC = () => {
                 </Button>
               </Form.Item>
               <div className="text-right">
-                <Button className="text-[#1850AE]" type="link">
+                <Button style={{ color: colorPrimary }} type="link">
                   忘记密码？
                 </Button>
               </div>
